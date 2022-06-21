@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
+{% load markdownify %}
+
 
 {% block content %}
 <main>
     <div>
         <h1>{{ project.name }}</h1>
-        <p>{{ project.description }}</p>
+        <p>{{ project.description|markdownify }}</p>
         <h2>Tasks</h2>
         <p>
             <a href="{% url 'create_task' %}">Create a new task</a>
         </p>
-        {% if project.task %}
+        {% if task.project %}
         <table>
             <thead>
                 <tr>
@@ -20,7 +22,7 @@
                     <th>Is completed</th>
                 </tr>
             </thead>
-            {% for item in project_list %}
+            {% for item in task_detail %}
             <tbody>
                 <tr>
                     <td>{{ item.name }}</td>
@@ -33,7 +35,7 @@
             {% endfor %}
         </table>
         {% else %}
-        <p>This project has no tasks"</p>
+        <p>This project has no tasks</p>
         {% endif %}
     </div>
 </main>
