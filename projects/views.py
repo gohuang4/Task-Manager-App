@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.detail import DetailView
@@ -32,6 +31,6 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         item = form.save(commit=False)
-        item.projects = self.request.user
         item.save()
-        return redirect("show_project")
+        item.members.add(self.request.user)
+        return redirect("show_project", pk=item.id)
