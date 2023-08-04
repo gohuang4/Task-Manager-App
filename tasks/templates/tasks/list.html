@@ -2,7 +2,7 @@
 
 {% block content %}
     <main>
-        <div>
+        <div class="my-tasks-list">
             <h1>My Tasks</h1>
             {% if tasks %}
                 <table>
@@ -26,7 +26,9 @@
                                     <form method="post" action="{% url 'complete_task' item.id %}">
                                         {% csrf_token %}
                                         <input type="hidden" name="is_completed" value="True">
+                                        <a href="{% url 'list_projects' %}">
                                         <button>Complete</button>
+                                        </a>
                                     </form>
                                 {% endif %}
                                 </td>

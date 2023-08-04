@@ -2,13 +2,14 @@
 
 {% block content %}
     <main>
-        <div>
+        <div class="project-list">
             <h1>My Projects</h1>
             <div>
                 <a href="{% url 'create_project' %}">Create Project</a>
             </div>
-            {% if projects == None %}
+            {% if project_list == None %}
                 <p>You are not assigned to any projects</p>
+            {% else %}
                 <table>
                     <thead>
                         <tr>
